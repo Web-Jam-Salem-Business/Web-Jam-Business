@@ -1,35 +1,32 @@
 import {inject} from 'aurelia-framework';
-import {HttpClient, json} from 'aurelia-fetch-client';
-
+import {HttpClient} from 'aurelia-fetch-client';
+import {Router} from 'aurelia-router';
 //import { bindable } from 'aurelia-framework';
-@inject(HttpClient)
 
+const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
+
+@inject(HttpClient, Router)
 export class Bookshelf {
-  constructor(httpClient){
+
+  constructor(httpClient, router){
     this.httpClient = httpClient;
-    if (process.env.NODE_ENV === 'production') {
-      this.fetchURL = 'http://ourhandsandfeetbackend.herokuapp.com';
-    } else {this.fetchURL = 'http://localhost:7000'; }
+    this.router = router;
   }
 
-  //books=[];
-  books=null;
-  getBooks(){
-    this.httpClient.fetch(this.fetchURL + '/book/getall')
-        .then(response => response.json())
-        .then(data => {
-          console.log("Books:");
-          console.log(data);
-          this.books=data;
-        });
+  async activate(){
+    await fetch;
 
+    this.httpClient.configure(config => {
+      config
+      .useStandardConfiguration()
+      .withBaseUrl(process.env.BackendUrl);
+    });
+
+    const res = await this.httpClient.fetch('/book/getall');
+    this.books =  await res.json();
   }
 
-  getBook(bookname){
-
-  }
-
-  activate(){
-    this.getBooks();
-  }
+  // attached() {
+  //   document.title = this.router.currentInstruction.config.title;
+  // }
 }
