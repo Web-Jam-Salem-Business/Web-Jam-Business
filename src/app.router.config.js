@@ -9,14 +9,14 @@ export class AppRouterConfig{
   }
   configure(config1, router){
     let theAppRouterConfig = function(config){
-      config.title = 'Our Hands and Feet';
+      config.title = 'Web Jam LLC';
       config.addPipelineStep('authorize', AuthorizeStep);//Is the actually Authorization. Prevents users from certain sites when not authorized.
       config.map([
-        { route: ['', 'home'], name: 'home', moduleId: './home', nav: true, title: 'About' },
-        { route: 'news', name: 'news', moduleId: './news', nav: true, title: 'News' },
-        { route: 'bookshelf', name: 'bookshelf', moduleId: './bookshelf', nav: true, title: 'Bookshelf'},
-        { route: 'login', name: 'login', moduleId: './login', nav: false, title: 'Login'},
-        { route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true}
+        { route: ['', 'home'], name: 'home', moduleId: './home', nav: true, title: 'Home' },
+        { route: 'samples', name: 'samples', moduleId: './samples', nav: true, title: 'Samples' }
+        // { route: 'bookshelf', name: 'bookshelf', moduleId: './bookshelf', nav: true, title: 'Bookshelf'},
+        // { route: 'login', name: 'login', moduleId: './login', nav: false, title: 'Login'},
+        // { route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true}
         
       ]);
     };
