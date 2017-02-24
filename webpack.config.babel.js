@@ -3,35 +3,36 @@
  * To learn more about how to use Easy Webpack
  * Take a look at the README here: https://github.com/easy-webpack/core
  **/
-import { generateConfig, get, stripMetadata, EasyWebpackConfig } from '@easy-webpack/core'
-import path from 'path'
-
-import envProd from '@easy-webpack/config-env-production'
-import envDev from '@easy-webpack/config-env-development'
-import aurelia from '@easy-webpack/config-aurelia'
-import babel from '@easy-webpack/config-babel'
-import html from '@easy-webpack/config-html'
-import css from '@easy-webpack/config-css'
-import fontAndImages from '@easy-webpack/config-fonts-and-images'
-import globalBluebird from '@easy-webpack/config-global-bluebird'
-import globalJquery from '@easy-webpack/config-global-jquery'
-import globalRegenerator from '@easy-webpack/config-global-regenerator'
-import generateIndexHtml from '@easy-webpack/config-generate-index-html'
-import commonChunksOptimize from '@easy-webpack/config-common-chunks-simple'
-import copyFiles from '@easy-webpack/config-copy-files'
-import uglify from '@easy-webpack/config-uglify'
-import generateCoverage from '@easy-webpack/config-test-coverage-istanbul'
-
-
-process.env.BABEL_ENV = 'webpack'
-const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || (process.env.NODE_ENV = 'development')
+//import { generateConfig, get, stripMetadata, EasyWebpackConfig } from '@easy-webpack/core';
+import { generateConfig, stripMetadata } from '@easy-webpack/core';
+import path from 'path';
+import envProd from '@easy-webpack/config-env-production';
+import envDev from '@easy-webpack/config-env-development';
+import aurelia from '@easy-webpack/config-aurelia';
+import babel from '@easy-webpack/config-babel';
+import html from '@easy-webpack/config-html';
+import css from '@easy-webpack/config-css';
+import fontAndImages from '@easy-webpack/config-fonts-and-images';
+import globalBluebird from '@easy-webpack/config-global-bluebird';
+import globalJquery from '@easy-webpack/config-global-jquery';
+import globalRegenerator from '@easy-webpack/config-global-regenerator';
+import generateIndexHtml from '@easy-webpack/config-generate-index-html';
+import commonChunksOptimize from '@easy-webpack/config-common-chunks-simple';
+import copyFiles from '@easy-webpack/config-copy-files';
+import uglify from '@easy-webpack/config-uglify';
+//import generateCoverage from '@easy-webpack/config-test-coverage-istanbul';
+import webpack from 'webpack';
+import dotenv from 'dotenv';
+dotenv.config({path: '.env'});
+process.env.BABEL_ENV = 'webpack';
+const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || (process.env.NODE_ENV = 'development');
 
 // basic configuration:
-const title = 'Our Hands and Feet'
-const baseUrl = '/'
-const rootDir = path.resolve()
-const srcDir = path.resolve('src')
-const outDir = path.resolve('dist')
+const title = 'Web Jam LLC';
+const baseUrl = '/';
+const rootDir = path.resolve();
+const srcDir = path.resolve('src');
+const outDir = path.resolve('dist');
 
 const coreBundles = {
   bootstrap: [
@@ -43,7 +44,6 @@ const coreBundles = {
     'bluebird',
     'aurelia-polymer',
     'aurelia-auth',
-    'aurelia-environment',
     'au-table'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
@@ -52,6 +52,7 @@ const coreBundles = {
     'aurelia-binding',
     'aurelia-dependency-injection',
     'aurelia-event-aggregator',
+    //'aurelia-files/dist/amd',
     'aurelia-framework',
     'aurelia-history',
     'aurelia-history-browser',
@@ -73,10 +74,10 @@ const coreBundles = {
     'aurelia-templating-resources',
     'aurelia-polymer',
     'aurelia-auth',
-    'aurelia-environment',
     'au-table'
+    // 'aurelia-files'
   ]
-}
+};
 
 /**
  * Main Webpack Configuration
@@ -90,12 +91,6 @@ let config = generateConfig(
     },
     output: {
       path: outDir
-    // },
-    // resolve: {
-    //   modules: [
-    //   "node_modules",
-    //   path.resolve(__dirname, "csvtojson")
-    //   ]
     }
   },
 
@@ -107,7 +102,6 @@ let config = generateConfig(
    *
    * For Webpack docs, see: https://webpack.js.org/configuration/
    */
-
 
 
   ENV === 'test' || ENV === 'development' ?
@@ -124,18 +118,41 @@ let config = generateConfig(
   globalJquery(),
   globalRegenerator(),
   generateIndexHtml({minify: ENV === 'production'}),
+  // copyFiles({patterns: [{ from: '.env', to: './'}]}),
+  {
+    plugins: [
+      new webpack.ProvidePlugin({
+        //TODO: After boostrap has been updated from 4.0.0-alpha6, check if this is fixed. Or new version of bootstrap.
+        //NOTE: Including tether variable so we don't actually have to install tether.
+        'Tether': 'tether'})
+        //, require('karma-webpack')
+    ]
+  },
 
   ...(ENV === 'production' || ENV === 'development' ? [
     commonChunksOptimize({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
-    copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' },
-    { from: 'aurelia.env', to: 'aurelia.env'}]})
+    copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }
+    ]})
   ] : [
     /* ENV === 'test' */
-    generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
+    // generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})
   ]),
+
+  // ENV != 'production' ? [
+  //   copyFiles({patterns: [
+  //   { from: '.env', to: './'}]})
+  // ]:
 
   ENV === 'production' ?
     uglify({debug: false, mangle: { except: ['cb', '__webpack_require__'] }}) : {}
-)
 
-module.exports = stripMetadata(config)
+    , {plugins: [new webpack.EnvironmentPlugin(['NODE_ENV', 'AuthProductionBaseURL', 'PORT', 'BackendUrl', 'GoogleClientId'])]}
+    , {plugins: [new webpack.DefinePlugin({'process.env': Object.keys(process.env).reduce((o, k) => {
+      o[k] = JSON.stringify(process.env[k]);
+      return o;
+    }, {})})]}
+
+    , {devServer: {port: parseInt(process.env.PORT, 10)}}
+);
+
+module.exports = stripMetadata(config);

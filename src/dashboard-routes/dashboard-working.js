@@ -12,8 +12,9 @@ export class Dashboard {
     this.auth = auth;
     this.httpClient = httpClient;
     this.router = router;
+    
   }
-
+  
   authenticated=false;
   firstTimeInfo = false;
   types=['Charity', 'Volunteer'];
@@ -61,6 +62,7 @@ export class Dashboard {
   }
 
   activate() {
+    console.log(this.app);
     this.getUser();
   }
 }
