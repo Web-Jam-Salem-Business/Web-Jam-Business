@@ -1,6 +1,6 @@
 <template>
   <div class="page-host">
-  <!-- <div id="content"> -->
+    <!-- <div id="content"> -->
     <paper-drawer-panel right-drawer>
       <paper-header-panel drawer>
         <paper-material class="material-header" elevation="0">
@@ -18,34 +18,34 @@
             </a>
           </paper-item>
           <!-- <paper-item if.bind="authenticated">
-            <a paper-drawer-toggle style="display:block" href="#/dashboard">Dashboard</a></paper-item>
-            <paper-item if.bind="!authenticated">
-              <a paper-drawer-toggle style="display:block" href="#/login">Login</a></paper-item>
-              <paper-item if.bind="authenticated">
-                <a paper-drawer-toggle style="display:block" click.delegate="logout()">
-                  Logout
-                </a>
-              </paper-item> -->
-            </div>
-          </paper-header-panel>
-          <paper-header-panel main class="main-panel">
-            <paper-material class="material-header" elevation="0">
-              <paper-card alt="Charity Logo" image="../styles/imgs/charitylogo.png" style="margin-top:10px;background-color: #496067;width:110px">
-              </paper-card>
-              <paper-card  style="background-color:#496067;top:-15px;left:5px;text-align:center;">
-                  <h3 class="material-header-h3-call">Our<br>Hands and<br>Feet</h3>
-
-                  <!-- <h3 style="color:white" repeat.for="row of router.navigation" class="${row.isActive ? '' : 'hidden'}">
-                  <a  paper-drawer-toggle style="display:block;color:white" href.bind="row.href">
-                  ${row.title}
-                </a></h3> -->
-              </paper-card >
-            </paper-material>
-            <i class="fa fa-bars pull-right fa-3x" paper-drawer-toggle aria-hidden="true" style="position:absolute; top:70px;right:25px;"></i>
-            <router-view></router-view>
-          </paper-header-panel>
-        </paper-drawer-panel>
-        <nav-bar router.bind="router"></nav-bar>
-      </div>
-	  <!-- </div> -->
-    </template>
+          <a paper-drawer-toggle style="display:block" href="#/dashboard">Dashboard</a></paper-item>
+          <paper-item if.bind="!authenticated">
+          <a paper-drawer-toggle style="display:block" href="#/login">Login</a></paper-item>
+          <paper-item if.bind="authenticated">
+          <a paper-drawer-toggle style="display:block" click.delegate="logout()">
+          Logout
+        </a>
+      </paper-item> -->
+    </div>
+  </paper-header-panel>
+  <paper-header-panel main class="main-panel">
+    <paper-material class="material-header" elevation="0">
+      <paper-card alt="web-jam-icon" image="../styles/imgs/webjamicon5.png" style="margin-top:10px;background-color: #496067;width:110px">
+      </paper-card>
+      <paper-card image="../styles/imgs/webjamlogo.png" style="width:340px; margin-left:2in">
+      </paper-card>
+      
+      <!-- <h3 style="color:white" repeat.for="row of router.navigation" class="${row.isActive ? '' : 'hidden'}">
+      <a  paper-drawer-toggle style="display:block;color:white" href.bind="row.href">
+      ${row.title}
+    </a></h3> -->
+    
+  </paper-material>
+  <i class="fa fa-bars pull-right fa-3x" paper-drawer-toggle aria-hidden="true" style="position:absolute; top:70px;right:25px;"></i>
+  <router-view></router-view>
+</paper-header-panel>
+</paper-drawer-panel>
+<nav-bar router.bind="router"></nav-bar>
+</div>
+<!-- </div> -->
+</template>
