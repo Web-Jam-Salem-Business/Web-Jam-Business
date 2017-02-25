@@ -43,20 +43,20 @@ describe('the app.router.config module', () => {
   });
 
   it('should have an About route', () => {
-    expect(sut.router.routes).toContain({ route: ['', 'home'], name: 'home',  moduleId: './home', nav: true, title: 'About' });
+    expect(sut.router.routes).toContain({ route: ['', 'home'], name: 'home',  moduleId: './home', nav: true, title: 'Home' });
   });
 
   it('should have a news route', () => {
-    expect(sut.router.routes).toContain({ route: 'news', name: 'news', moduleId: './news', nav: true, title: 'News' });
+    expect(sut.router.routes).toContain({ route: 'samples', name: 'samples', moduleId: './samples', nav: true, title: 'Samples' });
   });
 
-  it('should have a login route', () => {
-    expect(sut.router.routes).toContain({ route: 'login', name: 'login', moduleId: './login', nav: false, title: 'Login' });
-  });
-
-  it('should have a dashboard route', () => {
-    expect(sut.router.routes).toContain({ route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true });
-  });
+  // it('should have a login route', () => {
+  //   expect(sut.router.routes).toContain({ route: 'login', name: 'login', moduleId: './login', nav: false, title: 'Login' });
+  // });
+  //
+  // it('should have a dashboard route', () => {
+  //   expect(sut.router.routes).toContain({ route: 'dashboard', name: 'dashboard-router', moduleId: './dashboard-router', nav: false, title: 'Dashboard', auth: true });
+  // });
 
   // it('should have a login route', () => {
   //   expect(sut.router.routes).toContain({ route: 'dashboard', name: 'dashboard', moduleId: './dashboard', nav: false, title: 'Dashboard', auth:true });
