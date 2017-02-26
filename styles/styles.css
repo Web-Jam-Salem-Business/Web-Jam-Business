@@ -8,17 +8,31 @@ form {
   margin-top: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-family: 'PT Sans Caption';
+}
+
+p,
+a {
+  font-family: 'Habibi';
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h1 {
+  font-size: 34px;
+}
+
 #content {
   left: auto;
   width: 1000px;
   margin: auto;
 }
-
-/* .paper-drawer-panel {
-  left: auto;
-  width: 1000px;
-  margin: auto;
-} */
 
 table {
   margin: auto;
@@ -34,6 +48,13 @@ td {
   border: 1px solid #777;
   padding: 8px;
   text-align: left;
+}
+
+polymer-slideshow
+{
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 32%;
 }
 
 .splash {
@@ -237,7 +258,7 @@ section.au-enter-active {
 }
 
 .material-content {
-  padding-bottom: 10px;/* padding-top: 5px; */
+  padding: 10px;
 }
 
 .material-content-faq {
@@ -280,11 +301,11 @@ section.au-enter-active {
 }
 
 .material-header {
-  height: 128px;
+  height: 80px;
   margin-left: auto;
   margin-right: -256px;
   overflow-y: auto;
-  min-height: 120px;
+  min-height: 80px;
   background-color: #2a222a;
   margin-bottom: auto;
 }
@@ -312,11 +333,14 @@ section.au-enter-active {
 .slideshowimage {
   width: 100%;
   height: 0;
-  padding-bottom: 32%;
 }
 
 .paper-card-img {
   text-align: center;
+}
+
+.paper-drawer-panel-0 iron-selector.paper-drawer-panel > #drawer.paper-drawer-panel {
+  background-color: #c0c0c0;
 }
 
 .search-table-outer {
