@@ -10,14 +10,15 @@ form {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: 'PT Sans Caption';
 }
 
 p,
 a {
   font-family: 'Habibi';
-  font-size: 20px;
+  font-size: 18px;
 }
 
 h2 {
@@ -53,8 +54,8 @@ td {
 polymer-slideshow
 {
   width: 100% !important;
-  height: 0 !important;
-  padding-bottom: 32%;
+  height: 100% !important;
+  padding-bottom: 38%;
 }
 
 .splash {
