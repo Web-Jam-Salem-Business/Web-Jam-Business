@@ -367,3 +367,7 @@ section.au-enter-active {
 .aut-desc::after {
   content: "\f161";
 }
+paper-material.material-header x-scope paper-material-0
+{
+  background-color: #c0c0c0;
+}
