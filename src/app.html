@@ -4,11 +4,11 @@
     <paper-drawer-panel right-drawer>
       <paper-header-panel drawer>
         <paper-material class="material-header" elevation="0">
-          <paper-card image="../styles/imgs/webjamlogo.png" style="width:200px;">
-        </paper-card>
+          <paper-card image="../styles/imgs/webjamlogo.png" style="width:260px; height:100px">
+          </paper-card>
           
         </paper-material>
-        <div>
+        <div style="background-color: #c0c0c0;padding-top:2px;padding-left:70px;">
           <paper-item  repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
             <a paper-drawer-toggle style="display:block" href.bind="row.href">
               ${row.title}
@@ -27,19 +27,15 @@
   </paper-header-panel>
   <paper-header-panel main class="main-panel">
     <paper-material class="material-header" elevation="0">
-      <paper-card alt="web-jam-icon" image="../styles/imgs/webjamicon5.png" style="margin-top:10px;background-color: #496067;width:110px">
+      <paper-card alt="web-jam-icon" image="../styles/imgs/webjamicon7.png" style="width:80px; background-color:#2a222a">
+      </paper-card> 
+      <paper-card  style="background-color:#2a222a;top:-30px;left:15px;text-align:center;">
+        <h3 style="color: white">Web Jam LLC</h3>
       </paper-card>
-      
-      
-      <!-- <h3 style="color:white" repeat.for="row of router.navigation" class="${row.isActive ? '' : 'hidden'}">
-      <a  paper-drawer-toggle style="display:block;color:white" href.bind="row.href">
-      ${row.title}
-    </a></h3> -->
-    
-  </paper-material>
-  <i class="fa fa-bars pull-right fa-3x" paper-drawer-toggle aria-hidden="true" style="position:absolute; top:70px;right:25px;color:#c0c0c0"></i>
-  <router-view></router-view>
-</paper-header-panel>
+    </paper-material>
+    <i class="fa fa-bars pull-right fa-3x" paper-drawer-toggle aria-hidden="true" style="position:absolute; top:25px;right:15px;color:#c0c0c0"></i>
+    <router-view></router-view>
+  </paper-header-panel>
 </paper-drawer-panel>
 <nav-bar router.bind="router"></nav-bar>
 </div>
