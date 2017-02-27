@@ -12,14 +12,14 @@
   
   <div class="page-host">
     <!-- <div id="content"> -->
-    <paper-drawer-panel right-drawer>
+    <paper-drawer-panel right-drawer drawer-width="180px">
       <paper-header-panel drawer>
         <paper-material class="material-header" elevation="0" style="background-color: #c0c0c0">
-          <paper-card image="../styles/imgs/webjamlogo1.png" style="width:180px; margin-left:40px; border:0">
+          <paper-card image="../styles/imgs/webjamlogo1.png" style="width:180px; border:0">
           </paper-card>
           
         </paper-material>
-        <div style="background-color: #c0c0c0;padding-top:2px;padding-left:70px;">
+        <div style="background-color: #c0c0c0;padding-top:32px; margin-left:40px;">
           <paper-item  repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
             <a paper-drawer-toggle style="display:block" href.bind="row.href">
               ${row.title}
@@ -44,7 +44,7 @@
         <h3 style="color: white">Web Jam LLC</h3>
       </paper-card>
     </paper-material>
-    <i class="fa fa-bars pull-right fa-3x" paper-drawer-toggle aria-hidden="true" style="position:absolute; top:25px;right:15px;color:#c0c0c0"></i>
+    <i class="fa fa-bars pull-right fa-2x" paper-drawer-toggle aria-hidden="true" style="position:absolute; top:25px;right:15px;color:#c0c0c0"></i>
     <router-view></router-view>
   </paper-header-panel>
 </paper-drawer-panel>
