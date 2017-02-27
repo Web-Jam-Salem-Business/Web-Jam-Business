@@ -56,8 +56,7 @@ td {
   text-align: left;
 }
 
-polymer-slideshow
-{
+polymer-slideshow {
   width: 100% !important;
   height: 100% !important;
   padding-bottom: 38%;
@@ -347,6 +346,7 @@ section.au-enter-active {
 
 .paper-drawer-panel-0 iron-selector.paper-drawer-panel > #drawer.paper-drawer-panel {
   background-color: #c0c0c0;
+  width: 200px;
 }
 
 .search-table-outer {
@@ -372,7 +372,7 @@ section.au-enter-active {
 .aut-desc::after {
   content: "\f161";
 }
-paper-material.material-header x-scope paper-material-0
-{
+
+paper-material.material-header x-scope paper-material-0 {
   background-color: #c0c0c0;
 }
