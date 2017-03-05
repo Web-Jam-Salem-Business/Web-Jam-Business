@@ -10,6 +10,8 @@ export class AppRouterConfig{
   configure(config1, router){
     let theAppRouterConfig = function(config){
       config.title = 'Web Jam LLC';
+      config.options.pushState = true;
+      config.options.root = '/';
       config.addPipelineStep('authorize', AuthorizeStep);//Is the actually Authorization. Prevents users from certain sites when not authorized.
       config.map([
         { route: ['', 'home'], name: 'home', moduleId: './home', nav: true, title: 'Home' },
